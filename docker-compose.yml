@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  pyapp:
+    build: ./pyapp
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./pyapp:/app  # mounting from local directory to the container
+    depends_on:
+      - mongo  # dependency from mongo-client
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
