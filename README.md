@@ -1,27 +1,27 @@
-# Datenimport mit Docker und MongoDB
-Dieses Projekt demonstriert den Import von Daten aus einer CSV-Datei in eine MongoDB-Datenbank mithilfe von Docker.
+# About
+This project is Task 1 of the Data Engineering Course at IU. It demonstrates storing collected sensor data in a database and making it usable for other developers (e.g., frontend).
 
-# Voraussetzungen
-Vor dem Starten der Anwendung müssen Docker und Docker-Compose auf Ihrem System installiert sein.
+# Requirements
+Before starting the application, make sure to install Docker Desktop.
 
-# Anwendung starten
- Öffnen Sie ein Terminal und navigieren Sie zum Verzeichnis dieses Projekts.
 
- Führen Sie den Befehl docker-compose up aus, um die Anwendung zu starten.
+# starting application
+1. open a terminal and navigate to the directory.
+2. run the command 'docker-compose-up', to run the application
+3. the application will start in 2 containers:
+- one for the python script
+- and the other for the mongoDB server
 
- Die Anwendung startet zwei Container: einen für die Python-Anwendung und einen für MongoDB. Sie können den Fortschritt im Terminal beobachten.
+The container with the python script is responsible for connecting to the port which is hosted
+by the container with the mongoDB server. The python script will create a databse and read the data from 'iot_telemetry_data.csv. afterwards it will store the data in batches into the created database.
 
-Nachdem die Container gestartet wurden, wird das Python-Skript ausgeführt. Dieses Skript liest die Daten aus der Datei iot_telemetry_data.csv ein und speichert sie in der MongoDB-Datenbank.
 
-Der Importvorgang wird im Terminal protokolliert, und Sie sehen die Meldung "Import completed.", wenn der Vorgang abgeschlossen ist.
+# Datastructure
+pyapp/: this directory contains the python script, Dockerfile and the sensor data.
+main.py: this is the main script which creates the database and reads the sensor data.
+iot_telemetry_data.csv: this is the file with the sensor data.
+Dockerfile: this is the dockerfile for the python application
+docker-compose.yml: this is the docker compopse file, which makes the connection between 2 containers possible
 
-# Dateistruktur
-pyapp/: Dieser Ordner enthält die Python-Anwendung und die benötigten Dateien.
-main.py: Das Hauptskript, das die Daten aus der CSV-Datei liest und in die MongoDB-Datenbank importiert.
-iot_telemetry_data.csv: Die CSV-Datei mit den zu importierenden Daten.
-Dockerfile: Das Dockerfile für die Python-Anwendung.
-docker-compose.yml: Die Docker-Compose-Datei, die die Konfiguration für das Starten der Anwendung enthält.
 
-# Hinweise
-Stellen Sie sicher, dass die Datei iot_telemetry_data.csv im gleichen Verzeichnis wie die main.py liegt. Andernfalls kann das Python-Skript die Datei nicht finden.
-Überprüfen Sie das Terminalprotokoll, um sicherzustellen, dass der Datenimport erfolgreich abgeschlossen wurde.
+
